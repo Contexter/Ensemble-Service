@@ -1,6 +1,6 @@
 # FountainAI Ensemble Service Development Plan
 
-![The FountainAI Ensemble Service]\(https\://coach.benedikt-eickhoff.de/koken/storage/cache/images/000/738/Ensemble-Service,xlarge.1729067517.png)
+![The FountainAI Ensemble Service](https\://coach.benedikt-eickhoff.de/koken/storage/cache/images/000/738/Ensemble-Service,xlarge.1729067517.png)
 
 ## Introduction
 
