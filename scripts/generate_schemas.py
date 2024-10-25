@@ -8,9 +8,9 @@ from pathlib import Path
 from enum import Enum
 
 # Path to the OpenAPI specification
-OPENAPI_SPEC_PATH = os.getenv('OPENAPI_SPEC_PATH', 'openapi3_1.yml')  # Input OpenAPI specification
+OPENAPI_SPEC_PATH = os.getenv('OPENAPI_SPEC_PATH', '/app/openapi3_1.yml')  # Input OpenAPI specification
 # Directory to store generated Pydantic models
-SCHEMAS_DIR = Path(os.getenv('SCHEMAS_DIR', 'app/schemas'))
+SCHEMAS_DIR = Path(os.getenv('SCHEMAS_DIR', '/app/app/schemas'))
 
 # Ensure the schemas directory exists
 SCHEMAS_DIR.mkdir(parents=True, exist_ok=True)
@@ -53,8 +53,9 @@ class PydanticModelGenerator:
 
         # Write model to file
         model_file_path = SCHEMAS_DIR / f"{model_name.lower()}.py"
-        with model_file_path.open('w') as model_file:
-            model_file.write('\n'.join(class_code))
+        if not model_file_path.exists():
+            with model_file_path.open('w') as model_file:
+                model_file.write('\n'.join(class_code))
 
     def get_python_type(self, prop_spec: Dict[str, Any]) -> str:
         openapi_type = prop_spec.get('type')
@@ -100,8 +101,9 @@ class PydanticModelGenerator:
             enum_code.append(f"    {value.upper()} = '{value}'")
         # Write enum to file
         enum_file_path = SCHEMAS_DIR / f"{enum_name.lower()}.py"
-        with enum_file_path.open('w') as enum_file:
-            enum_file.write('\n'.join(enum_code))
+        if not enum_file_path.exists():
+            with enum_file_path.open('w') as enum_file:
+                enum_file.write('\n'.join(enum_code))
 
 # Generate Pydantic models
 if 'components' in openapi_spec and 'schemas' in openapi_spec['components']:
