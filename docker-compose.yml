@@ -24,6 +24,7 @@ services:
       - typesense-data:/data
     environment:
       - TYPESENSE_API_KEY=typesense-api-key
+      - TYPESENSE_DATA_DIR=/data
 
 volumes:
   typesense-data:
