@@ -121,7 +121,6 @@ The implementation plan focuses on translating the OpenAPI specification into an
     - Includes environment variables for development settings.
 
 - **Functional Prompt**:
-
   ```
 Generate a Dockerfile to containerize the FastAPI application, ensuring that it includes all necessary dependencies and copies the application code into the container. Use a working directory named /service instead of /app to prevent a recursive directory structure caused by overlapping Docker and FastAPI conventions. Also, generate a docker-compose.yml file to orchestrate the application and its dependencies, such as Typesense. Ensure that the Docker configurations match the project's requirements, including necessary environment variables. The configurations should support a local development workflow and ensure that both development and containerized environments are consistent.
   ```
