@@ -1,3 +1,5 @@
+# docker-compose.yml
+
 version: '3.9'
 
 services:
@@ -18,6 +20,10 @@ services:
     container_name: typesense_service
     ports:
       - "8108:8108"
+    volumes:
+      - typesense-data:/data
     environment:
-      - TYPESENSE_DATA_DIR=/data
       - TYPESENSE_API_KEY=typesense-api-key
+
+volumes:
+  typesense-data:
