@@ -2,6 +2,7 @@ import os
 import logging
 from yaml import safe_load, YAMLError
 
+logging.basicConfig(level=logging.INFO)
 
 def generate_main_entry():
     """
@@ -41,25 +42,30 @@ def custom_openapi():
         try:
             with open(openapi_path, "r") as file:
                 openapi_schema = safe_load(file)
-            app.openapi_schema = get_openapi(
-                title=app.title,
-                version=app.version,
-                description=app.description,
-                routes=app.routes,
-            )
-            # Merge specific keys from the custom OpenAPI schema
-            if 'info' in openapi_schema:
-                app.openapi_schema['info'] = openapi_schema['info']
-            if 'servers' in openapi_schema:
-                app.openapi_schema['servers'] = openapi_schema['servers']
-            if 'components' in openapi_schema:
-                app.openapi_schema['components'] = openapi_schema['components']
-        except YAMLError as e:
-            logging.error(f"Error while parsing OpenAPI file: {e}")
-        except PermissionError as e:
-            logging.error(f"Permission error while accessing OpenAPI file: {e}")
-        except (FileNotFoundError, IsADirectoryError) as e:
-            logging.error(f"File system error while accessing OpenAPI file: {e}")
+        except YAMLError:
+            logging.error("Error while parsing OpenAPI file")
+            return app.openapi_schema
+        except PermissionError:
+            logging.error("Permission error while accessing OpenAPI file")
+            return app.openapi_schema
+        except (FileNotFoundError, IsADirectoryError):
+            logging.error("File system error while accessing OpenAPI file")
+            return app.openapi_schema
+
+        # Proceed with merging the schemas if no exceptions occurred
+        app.openapi_schema = get_openapi(
+            title=app.title,
+            version=app.version,
+            description=app.description,
+            routes=app.routes,
+        )
+        # Merge specific keys from the custom OpenAPI schema
+        if 'info' in openapi_schema:
+            app.openapi_schema['info'] = openapi_schema['info']
+        if 'servers' in openapi_schema:
+            app.openapi_schema['servers'] = openapi_schema['servers']
+        if 'components' in openapi_schema:
+            app.openapi_schema['components'] = openapi_schema['components']
     return app.openapi_schema
 
 # Assign the custom OpenAPI function to overwrite the default behavior of FastAPI
@@ -70,32 +76,20 @@ app.openapi = custom_openapi
 
     try:
         # Create the app directory if it doesn't exist
-        try:
-            os.makedirs(app_dir, exist_ok=True)
-        except PermissionError as e:
-            logging.error(f"Permission error while creating directory {app_dir}: {e}")
-            return
+        os.makedirs(app_dir, exist_ok=True)
 
         # Write the main.py file, with a backup if the file already exists
         if os.path.exists(main_file_path):
             backup_path = main_file_path + ".bak"
-            if os.path.exists(backup_path):
-                os.remove(backup_path)
-            os.rename(main_file_path, backup_path)
+            os.replace(main_file_path, backup_path)
             logging.info(f"Backup of existing main.py created at {backup_path}")
 
         with open(main_file_path, "w") as main_file:
             main_file.write(main_content)
 
         logging.info(f"Successfully created/updated main.py at {main_file_path}")
-    except IOError as e:
-        logging.error(f"Error while writing main.py: {e}")
-    except PermissionError as e:
-        logging.error(f"Permission error while writing main.py: {e}")
-    except (FileNotFoundError, IsADirectoryError) as e:
-        logging.error(f"File system error while writing main.py: {e}")
-
+    except Exception as exc:
+        logging.error(f"Unexpected error occurred: {exc}")
 
 if __name__ == "__main__":
     generate_main_entry()
-
