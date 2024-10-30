@@ -70,12 +70,6 @@ docker-compose up --build
 
 The `setup_fountainai_ensemble.py` script is executed within the Docker container to perform initial **setup tasks**.
 
-### Overview: Spec driven development from OpenAPI to OpenAPI
-
-The development strategy centers around using the **OpenAPI specification** as a guide while leveraging **FastAPI’s automatic OpenAPI schema generation**. This involves defining **Pydantic models** and **FastAPI routes** that align with the OpenAPI specification, enhancing the automatically generated OpenAPI schema using **route decorators** to include additional metadata such as `summary`, `description`, and `operation_id`. The approach avoids overriding FastAPI’s default OpenAPI generation process and includes validating the generated OpenAPI schema against the original specification to ensure consistency. **Code generation** and **integration** are automated using **modular scripts** within a **Dockerized environment**.
-
-**Note:** The **OpenAPI specification** resides in this repository at `openapi3_1.yml` in the `/service` root directory. This file should be referred to when implementing the application to ensure consistency and accuracy.
-
 ## Implementation Plan Using Modular Scripts
 
 ### Step 1: Configure the Docker Environment
