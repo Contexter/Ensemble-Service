@@ -4,13 +4,11 @@
 
 ### Introduction
 
-The **FountainAI Ensemble Service** is a core component of the FountainAI ecosystem, facilitating structured interactions between **users**, the **OpenAI Assistant SDK** (The Assistant), and various **FountainAI services**. It dynamically generates **system prompts** based on the **OpenAPI specifications** of each integrated service.
-
-For detailed API specifications, refer to the [OpenAPI Specification](https://github.com/Contexter/Ensemble-Service/blob/main/service/openapi3_1.yml).
-
 This README outlines a **specification-driven development strategy** for implementing the FountainAI Ensemble Service **FastAPI** application. The approach leverages **modular scripts** and a fully **Dockerized** local development environment to automate **code generation** and **integration** while adhering to FastAPI’s best practices for **OpenAPI schema generation**.
 
-By setting up **Docker** at the very beginning, we ensure a consistent, reliable, and efficient environment for building and testing the FountainAI Ensemble Service from the ground up.
+The **FountainAI Ensemble Service** is a core component of the FountainAI ecosystem, facilitating structured interactions between **users**, the **OpenAI Assistant SDK** (The Assistant), and various **FountainAI services**. It dynamically generates **system prompts** based on the **OpenAPI specifications** of each integrated service.
+
+Read the [OpenAPI Specification](https://github.com/Contexter/Ensemble-Service/blob/main/service/openapi3_1.yml) of the FountainAI Ensemble Service.
 
 ## Table of Contents
 
