@@ -4,9 +4,9 @@
 
 ### Introduction
 
-This README outlines a **specification-driven development strategy** for implementing the FountainAI Ensemble Service **FastAPI** application. The approach leverages **modular scripts** and a fully **Dockerized** local development environment to automate **code generation** and **integration** while adhering to FastAPI’s best practices for **OpenAPI schema generation**.
+This README outlines a **specification-driven development strategy** for implementing the FountainAI Ensemble Service **FastAPI** application in a fully **Dockerized** local development environment. The **FountainAI Ensemble Service** is a core component of the FountainAI ecosystem, facilitating structured interactions between **users**, the **OpenAI Assistant SDK** (The Assistant), and various **FountainAI services**. 
 
-The **FountainAI Ensemble Service** is a core component of the FountainAI ecosystem, facilitating structured interactions between **users**, the **OpenAI Assistant SDK** (The Assistant), and various **FountainAI services**. It dynamically generates **system prompts** based on the **OpenAPI specifications** of each integrated service.
+It dynamically generates **system prompts** based on the **OpenAPI specifications** of each integrated FountainAI service.
 
 Read the [OpenAPI Specification](https://github.com/Contexter/Ensemble-Service/blob/main/service/openapi3_1.yml) of the FountainAI Ensemble Service.
 
