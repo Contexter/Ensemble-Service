@@ -8,7 +8,7 @@ This README outlines a **specification-driven development strategy** for impleme
 
 It dynamically generates **system prompts** based on the **OpenAPI specifications** of each integrated FountainAI service.
 
-Read the [OpenAPI Specification](https://github.com/Contexter/Ensemble-Service/blob/main/service/openapi3_1.yml) of the FountainAI Ensemble Service.
+Read its [OpenAPI Specification](https://github.com/Contexter/Ensemble-Service/blob/main/service/openapi3_1.yml) .
 
 ## Table of Contents
 
