@@ -11,40 +11,6 @@ It dynamically generates **system prompts** based on the **OpenAPI specification
 Read its [OpenAPI Specification](https://github.com/Contexter/Ensemble-Service/blob/main/service/openapi3_1.yml) .
 
 
-## Objectives and Scope
-
-### Key Objectives
-
-#### Environment Setup
-
-The primary objective is to establish a **Dockerized environment** that manages the local development setup, effectively eliminating **Python environment issues**. By leveraging Docker, we ensure that all developers work within a consistent and isolated environment, reducing discrepancies and setup complexities.
-
-#### Application Implementation
-
-Implement a **FastAPI application** that aligns seamlessly with the **OpenAPI specification**. This involves utilizing FastAPI’s automatic **schema generation** capabilities and enhancing it with **route-level metadata** to provide detailed API documentation and improve maintainability.
-
-#### Code Integration
-
-Automate **code integration** through **modular scripts**. These scripts facilitate the generation and integration of various components such as **system prompts**, **authentication mechanisms**, and **CRUD operations**, ensuring that the codebase remains organized and scalable.
-
-#### Data Management
-
-Ensure robust **data persistence** and **synchronization** by utilizing **SQLite** for database management and **Typesense** for search functionalities. This combination provides a reliable storage solution and efficient data retrieval mechanisms, essential for maintaining data integrity and performance.
-
-#### Security
-
-Implement comprehensive **API security** through **API key authentication**. By securing endpoints with **apiKeyAuth** and **adminApiKeyAuth**, we protect sensitive data and ensure that only authorized users can access or modify resources.
-
-#### Administrative Features
-
-Provide **administrative endpoints** for managing the **service registry**. These endpoints enable administrators to add, update, or remove services dynamically, facilitating easy scalability and adaptability of the Ensemble Service to accommodate new functionalities or integrations.
-
-### Scope of the Service
-
-Designed for both **local deployment** (testing and development) and **cloud-based operations**, the service manages **queries**, processes **responses**, coordinates **service interactions**, and allows for **easy updates** as new services are added.
-
-## Specification-Driven Development Strategy
-
 ### Project Organization and Script Management
 
 To ensure a consistent and unambiguous **project structure**, the repository follows a standardized **folder layout** with a clear **root directory** and explicitly defined **paths**. The root directory of the project is `/service`.
