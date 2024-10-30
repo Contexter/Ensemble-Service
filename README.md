@@ -58,16 +58,6 @@ The root of the project is `/service`, with all paths relative to this root. The
 
 **Environment variables** are utilized to define **base paths**, ensuring that scripts and code can adapt to different **execution contexts**, such as running inside versus outside **Docker**. All paths within scripts are explicitly defined relative to the `/service` root directory to avoid ambiguity and ensure consistency.
 
-### Instructions for Running Scripts
-
-All **scripts** are executed within **Docker containers** to maintain a consistent environment. From the root directory of the repository, you can build and run the **Docker environment** using **Docker Compose** with the following command:
-
-```bash
-docker-compose up --build
-```
-
-The `setup_fountainai_ensemble.py` script is executed within the Docker container to perform initial **setup tasks**.
-
 ## Implementation Plan Using Modular Scripts
 
 ### Step 1: Configure the Docker Environment
