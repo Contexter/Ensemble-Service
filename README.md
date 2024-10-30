@@ -78,8 +78,6 @@ The development strategy centers around using the **OpenAPI specification** as a
 
 ## Implementation Plan Using Modular Scripts
 
-The **implementation plan** focuses on translating the **OpenAPI specification** into a **FastAPI application** that leverages FastAPI’s automatic **schema generation**. **Code generation** and **integration** are automated using **modular scripts** within a **Dockerized environment**. The steps are sequenced to facilitate a smooth development process, beginning with setting up **Docker**.
-
 ### Step 1: Configure the Docker Environment
 
 **Objective:** Set up **Docker** and **Docker Compose** configurations to manage the **local development environment** from the outset, ensuring files are correctly placed and paths are consistent.
