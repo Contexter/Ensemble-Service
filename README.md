@@ -56,8 +56,6 @@ To ensure a consistent and unambiguous **project structure**, the repository fol
 
 The root of the project is `/service`, with all paths relative to this root. The `openapi3_1.yml` file is located at the `/service` root directory. All **scripts** are housed within the `scripts/` directory at the root of the repository, while the `app/` directory contains the **FastAPI application code**, adhering to standard conventions.
 
-### Path Adaptation Based on Environment
-
 **Environment variables** are utilized to define **base paths**, ensuring that scripts and code can adapt to different **execution contexts**, such as running inside versus outside **Docker**. All paths within scripts are explicitly defined relative to the `/service` root directory to avoid ambiguity and ensure consistency.
 
 ### Instructions for Running Scripts
