@@ -10,35 +10,6 @@ It dynamically generates **system prompts** based on the **OpenAPI specification
 
 Read its [OpenAPI Specification](https://github.com/Contexter/Ensemble-Service/blob/main/service/openapi3_1.yml) .
 
-## Table of Contents
-
-- [Objectives and Scope](#objectives-and-scope)
-  - [Key Objectives](#key-objectives)
-    - [Environment Setup](#environment-setup)
-    - [Application Implementation](#application-implementation)
-    - [Code Integration](#code-integration)
-    - [Data Management](#data-management)
-    - [Security](#security)
-    - [Administrative Features](#administrative-features)
-  - [Scope of the Service](#scope-of-the-service)
-- [Specification-Driven Development Strategy](#specification-driven-development-strategy)
-  - [Project Organization and Script Management](#project-organization-and-script-management)
-  - [Path Adaptation Based on Environment](#path-adaptation-based-on-environment)
-  - [Instructions for Running Scripts](#instructions-for-running-scripts)
-  - [Overview](#overview)
-- [Implementation Plan Using Modular Scripts](#implementation-plan-using-modular-scripts)
-  - [Step 1: Configure the Docker Environment](#step-1-configure-the-docker-environment)
-  - [Step 2: Prepare the OpenAPI Specification](#step-2-prepare-the-openapi-specification)
-  - [Step 3: Define Modular Components and Prompts](#step-3-define-modular-components-and-prompts)
-  - [Step 4: Execute Scripts Within Docker Containers](#step-4-execute-scripts-within-docker-containers)
-  - [Step 5: Validate FastAPI Implementation Against OpenAPI Specification](#step-5-validate-fastapi-implementation-against-openapi-specification)
-  - [Step 6: Testing and Validation](#step-6-testing-and-validation)
-- [Dockerized Local Development Workflow](#dockerized-local-development-workflow)
-  - [Advantages of Setting Up Docker First](#advantages-of-setting-up-docker-first)
-  - [Workflow Steps](#workflow-steps)
-- [Next Steps](#next-steps)
-- [License](#license)
-- [Appendix: Keyword Index](#appendix-keyword-index)
 
 ## Objectives and Scope
 
