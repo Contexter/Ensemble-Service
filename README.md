@@ -97,7 +97,7 @@ This script creates the necessary **directories** and **initial files** for the 
 
 **Description:**
 
-This script generates a **minimal ****`main.py`** in `/service/app/` to ensure that the FastAPI application can run independently. This minimal setup includes the FastAPI instance and a simple root endpoint.
+This script generates a minimal **`main.py`** in `/service/app/` to ensure that the FastAPI application can run independently. This minimal setup includes the FastAPI instance and a simple root endpoint.
 
 **Prompt:**
 
