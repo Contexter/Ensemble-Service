@@ -67,21 +67,21 @@ Below is a detailed description of each script, including its purpose and the pr
 
 **Description:**
 
-This script generates a `Dockerfile` in the `/service` root directory, setting up the **Docker environment** with the necessary configurations for the **FastAPI application**.
+This script generates a `Dockerfile` in the `/service` root directory, setting up the **Docker environment** with the necessary configurations for the **FastAPI application**. In addition, it integrates migration management to ensure the database schema aligns with any updates when containers are started or rebuilt. The Dockerfile should include commands to apply migrations as part of the container’s startup routine.
 
 **Prompt:**
 
-> Generate a script named `generate_dockerfile.py` that will be placed in `/service/scripts/`. This script creates a `Dockerfile` in the `/service` root directory that uses an official Python base image (e.g., `python:3.11-slim`). It should set the working directory to `/service` to prevent recursive directory structures, install required system packages, copy the application code and scripts into the container ensuring files are placed correctly, install Python dependencies using `pip`, set environment variables as needed, and specify the command to run the **FastAPI application** using **Uvicorn**.
+> Generate a script named `generate_dockerfile.py` that will be placed in `/service/scripts/`. This script creates a `Dockerfile` in the `/service` root directory that uses an official Python base image (e.g., `python:3.11-slim`). It should set the working directory to `/service` to prevent recursive directory structures, install required system packages, copy the application code and scripts into the container ensuring files are placed correctly, install Python dependencies using `pip`, set environment variables as needed, and specify the command to run the **FastAPI application** using **Uvicorn**. Additionally, include the necessary tools for database migrations and add a command to apply migrations (e.g., `alembic upgrade head`) as part of the container startup routine.
 
 ### 2. generate_docker_compose.py
 
 **Description:**
 
-This script generates a `docker-compose.yml` file in the `/service` root directory, defining the **services** required for the **FastAPI application** and **Typesense**, along with necessary configurations.
+This script generates a `docker-compose.yml` file in the `/service` root directory, defining the **services** required for the **FastAPI application** and **Typesense**, along with necessary configurations. Docker Compose should define persistent volumes for the database to ensure that schema changes persist across container restarts.
 
 **Prompt:**
 
-> Generate a script named `generate_docker_compose.py` that will be placed in `/service/scripts/`. This script creates a `docker-compose.yml` file in the `/service` root directory that defines services for the **FastAPI application** and **Typesense**. It should mount **volumes** to allow code changes to be reflected without rebuilding the image, expose necessary **ports**, set up **network configurations**, and include **environment variables** for development settings.
+> Generate a script named `generate_docker_compose.py` that will be placed in `/service/scripts/`. This script creates a `docker-compose.yml` file in the `/service` root directory that defines services for the **FastAPI application** and **Typesense**. It should mount **volumes** to allow code changes to be reflected without rebuilding the image, expose necessary **ports**, set up **network configurations**, include **environment variables** for development settings, and define persistent volumes for the database to ensure schema changes persist across container restarts.
 
 ### 3. create_directory_structure.py
 
@@ -112,68 +112,6 @@ This script creates an **OpenAPI parser module** in `/service/app/core/openapi_p
 **Prompt:**
 
 > Generate a script named `generate_openapi_parser.py` that will be placed in `/service/scripts/`. This script creates `/service/app/core/openapi_parser.py`, which contains a reusable **OpenAPI parser** class or functions to parse the **OpenAPI specification** located at `/service/openapi3_1.yml`. The parser should provide methods to extract **schemas**, **security schemes**, **paths**, **parameters** (categorized by path, query, header, and cookie), **responses**, **request bodies**, **tags**, **callbacks**, **examples**, **links**, **headers**, **content types**, **operation IDs**, **server information**, and **security requirements** needed by other scripts. It should also handle resolving `$ref` references, including both internal and external references, and provide validation of the loaded specification against the OpenAPI 3.1 schema. It should overwrite any existing parser file, provide a **confirmation message** upon completion, and ensure compatibility with Docker by explicitly defining all paths relative to `/service`.
-
-**Example Implementation:**
-
-```python
-# /service/scripts/generate_openapi_parser.py
-
-import os
-
-SERVICE_ROOT = "/service"
-CORE_DIR = os.path.join(SERVICE_ROOT, "app", "core")
-PARSER_FILE = os.path.join(CORE_DIR, "openapi_parser.py")
-OPENAPI_SPEC_FILE = os.path.join(SERVICE_ROOT, "openapi3_1.yml")
-
-parser_content = """
-import yaml
-from typing import Any, Dict, List
-
-class OpenAPIParser:
-    def __init__(self, spec_path: str):
-        self.spec_path = spec_path
-        self.spec = self.load_spec()
-
-    def load_spec(self) -> Dict[str, Any]:
-        with open(self.spec_path, 'r') as f:
-            return yaml.safe_load(f)
-
-    def get_schemas(self) -> Dict[str, Any]:
-        return self.spec.get('components', {}).get('schemas', {})
-
-    def get_security_schemes(self) -> Dict[str, Any]:
-        return self.spec.get('components', {}).get('securitySchemes', {})
-
-    def get_paths(self) -> Dict[str, Any]:
-        return self.spec.get('paths', {})
-    
-    def get_endpoints(self) -> List[Dict[str, Any]]:
-        endpoints = []
-        paths = self.get_paths()
-        for path, methods in paths.items():
-            for method, details in methods.items():
-                endpoints.append({
-                    'path': path,
-                    'method': method,
-                    'details': details
-                })
-        return endpoints
-"""
-
-def generate_openapi_parser():
-    try:
-        # Ensure the core directory exists
-        os.makedirs(CORE_DIR, exist_ok=True)
-        
-        with open(PARSER_FILE, "w") as f:
-            f.write(parser_content.strip())
-        print(f"Created OpenAPI parser at {PARSER_FILE}")
-    except Exception as e:
-        print(f"Error creating OpenAPI parser: {e}")
-
-if __name__ == "__main__":
-    generate_openapi_parser()
-```
 
 ### 6. generate_authentication.py
 
@@ -543,8 +481,5 @@ By restructuring the development plan to first establish a **minimal FastAPI app
 
 Following this guide will help you set up a fully Dockerized development environment for the FountainAI Ensemble Service, leveraging modular scripts to automate the creation of the application structure, configurations, and components based on the provided OpenAPI specification. This method ensures consistency, scalability, and ease of maintenance, aligning with best practices in modern software development.
 
-If you have any further questions or need additional assistance, feel free to reach out!
 
----
 
-**Note:** The execution order has been updated to place the **OpenAPI parser creation** earlier in the process, as it is a critical dependency for the authentication setup and other components that rely on parsing the OpenAPI specification.
