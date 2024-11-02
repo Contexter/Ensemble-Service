@@ -1,6 +1,0 @@
-fastapi
-uvicorn
-PyYAML
-inflect
-python-dotenv
-sqlalchemy
