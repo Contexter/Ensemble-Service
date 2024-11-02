@@ -1,0 +1,8 @@
+*.pyc
+__pycache__
+*.pyo
+*.pyd
+.DS_Store
+.git
+.gitignore
+create_backup_and_prepare_next_iteration.sh
