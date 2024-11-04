@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  fountainai_ensemble_service:
+    build: .
+    container_name: fountainai_ensemble_service
+    working_dir: /service
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - .:/service
+    ports:
+      - "8000:8000"
+    environment:
+      - BASE_DIR=/service/app
+
+  typesense_service:
+    image: typesense/typesense:0.24.0
+    container_name: typesense_service
+    ports:
+      - "8108:8108"
+    volumes:
+      - typesense_data:/data
+    command: >
+      /typesense-server \
+      --data-dir /data \
+      --api-key=xyz \
+      --enable-cors
+
+volumes:
+  typesense_data:
